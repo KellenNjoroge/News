@@ -5,20 +5,19 @@ updateNews();
 });
 
 async function updateNews() {
-    const res = await fetch ('https://newsapi.org/v1/articles?sources=techcrunch&apiKey=de48ad148e3b4052a0e79ee1bc96dcf8');
+    const res = await fetch ('https://newsapi.org/v2/sources=?&apiKey=de48ad148e3b4052a0e79ee1bc96dcf8');
     const json = await res.json();
 
-    main.innerHTML = json.articles.map(createArticle).join('\n');
+    main.innerHTML = json.sources.map(createSource).join('\n');
      
 }
 
-function createArticle(article){
+function createSource(source){
     return `
-        <div class='article'>
-            <a href = '${article.url}'>
-                <h2>'${artcle.title}'</h2>
-                <img src = '${article.urlToImage}'>
-                <p>${article.description}</p>
+        <div class='source'>
+            <a href = '${source.url}'>
+                <h2>'${source.name}'</h2>
+                <p>${source.description}</p>
             </a>
         </div>
     `; 
